@@ -5,7 +5,8 @@ import {
 } from "@/lib/validation/note";
 import { auth } from "@clerk/nextjs";
 import prisma from "@/lib/db/prisma";
-
+import { getEmbedding } from "@/lib/openai";
+import { notesIndex } from "@/lib/db/pinecone";
 export async function POST(req: Request) {
   try {
     const body = await req.json();
@@ -25,12 +26,29 @@ export async function POST(req: Request) {
       return Response.json({ error: "Unauthorized" }, { status: 401 });
     }
 
-    const note = await prisma.note.create({
-      data: {
-        title,
-        content,
-        userId,
-      },
+    // generating embedding using the function
+    const embedding = await getEmbeddingForNote(title, content);
+
+    // Transaction(for handling if either of pinecone or mongodb is failed the we don't want to store them in different database)
+    const note = await prisma.$transaction(async (tx) => {
+      const note = await tx.note.create({
+        data: {
+          title,
+          content,
+          userId,
+        },
+      });
+
+      // upsert - which create update an entries in pinecone
+      await notesIndex.upsert([
+        {
+          id: note.id,
+          values: embedding,
+          metadata: { userId },
+        },
+      ]);
+
+      return note;
     });
 
     return Response.json({ note }, { status: 201 });
@@ -119,4 +137,8 @@ export async function DELETE(req: Request) {
     console.error(error);
     return Response.json({ error: "Internal server error" }, { status: 500 });
   }
+}
+
+async function getEmbeddingForNote(title: string, content: string | undefined) {
+  return getEmbedding(title + "/n/n" + content ?? "");
 }
