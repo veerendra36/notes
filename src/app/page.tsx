@@ -12,10 +12,10 @@ export default function Home() {
 
   return (
     <main className="flex h-screen flex-col items-center justify-center gap-5">
-      <div className="flex items-center gap-4">
+      <div className="flex items-center gap-2">
         <Image src={logo} alt="FlowBrain" height={100} width={100} />
-        <span className="text-4xl font-extrabold tracking-tight lg:text-5xl">
-          FlowBrain
+        <span className="text-4xl font-extrabold tracking-tight lg:text-6xl">
+          ThoughtThesis
         </span>
       </div>
       <p className="max-w-prose text-center">

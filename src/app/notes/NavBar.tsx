@@ -22,7 +22,7 @@ const NavBar = () => {
         <div className="m-auto flex max-w-7xl flex-wrap items-center justify-between gap-3">
           <Link href="/notes" className="flex items-center gap-1">
             <Image src={logo} alt="LOGO image" height={40} width={40} />
-            <span className="font-bold">FlowBrain</span>
+            <span className="font-bold">ThoughtThesis</span>
           </Link>
           <div className="flex items-center gap-2">
             <UserButton
