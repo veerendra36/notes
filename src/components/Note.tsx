@@ -19,7 +19,7 @@ const Note = ({ note }: NoteProps) => {
   const [showEditDialog, setShowEditDialog] = useState(false);
 
   // to check weather note is updated or not
-  const wasUpdated = note.updatedAt > note.createAt;
+  const wasUpdated = note.updatedAt > note.createdAt;
 
   const createdUpdatedAtTimestamp = (
     wasUpdated ? note.updatedAt : note.createAt
