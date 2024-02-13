@@ -13,7 +13,7 @@ export default openai;
 // function to request the openAI for embedding vectors
 export async function getEmbedding(text: string) {
   const response = await openai.embeddings.create({
-    model: "text-embedding-3-small",
+    model: "text-embedding-ada-002",
     input: text,
   });
 
