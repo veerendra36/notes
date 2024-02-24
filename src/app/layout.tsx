@@ -7,7 +7,7 @@ import { ThemeProvider } from "./ThemeProvider";
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
-  title: "FlowBrain",
+  title: "Thought Thesis",
   description: "The intelligent note-taking app",
 };
 

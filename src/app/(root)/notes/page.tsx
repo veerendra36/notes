@@ -5,7 +5,7 @@ import prisma from "@/lib/db/prisma";
 import Note from "@/components/Note";
 
 export const metadata: Metadata = {
-  title: "FlowBrain - Notes",
+  title: "Thought Thesis",
 };
 
 async function NotePage() {
@@ -16,7 +16,7 @@ async function NotePage() {
   const allNotes = await prisma.note.findMany({ where: { userId } });
 
   return (
-    <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
+    <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-3 ">
       {allNotes.map((note) => (
         <Note note={note} key={note.id} />
       ))}

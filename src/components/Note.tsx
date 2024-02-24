@@ -10,6 +10,8 @@ import {
   CardTitle,
 } from "./ui/card";
 import AddNoteDialog from "./AddNoteDialog";
+import { CardBody, CardContainer, CardItem } from "./ui/3d-card";
+import Image from "next/image";
 
 interface NoteProps {
   note: NoteModel;
@@ -27,7 +29,7 @@ const Note = ({ note }: NoteProps) => {
 
   return (
     <>
-      <Card
+      {/* <Card
         className="cursor-pointer transition-shadow hover:shadow-lg"
         onClick={() => setShowEditDialog(true)}
       >
@@ -41,7 +43,34 @@ const Note = ({ note }: NoteProps) => {
         <CardContent>
           <p className="whitespace-pre-line">{note.content}</p>
         </CardContent>
-      </Card>
+      </Card> */}
+      <div className="cursor-pointer" onClick={() => setShowEditDialog(true)}>
+        <CardContainer className="inter-var bg-card">
+          <CardBody className="group/card relative h-auto w-auto rounded-xl border border-black/[0.1] bg-gray-50 p-6 dark:border-white/[0.2] dark:bg-black dark:hover:shadow-2xl dark:hover:shadow-emerald-500/[0.1] sm:w-[30rem]  ">
+            <CardItem
+              translateZ="50"
+              className="text-xl font-bold text-neutral-600 dark:text-white"
+            >
+              {note.title}
+            </CardItem>
+            <CardItem
+              as="p"
+              translateZ="60"
+              className="mt-2 max-w-sm text-sm text-neutral-500 dark:text-neutral-300"
+            >
+              {createdUpdatedAtTimestamp}
+              {wasUpdated && " (updated)"}
+            </CardItem>
+            <CardItem
+              as="p"
+              translateZ="60"
+              className="mt-2 max-w-sm text-sm text-neutral-500 dark:text-neutral-300"
+            >
+              {note.content}
+            </CardItem>
+          </CardBody>
+        </CardContainer>
+      </div>
       <AddNoteDialog
         open={showEditDialog}
         setOpen={setShowEditDialog}

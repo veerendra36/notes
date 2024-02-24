@@ -1,17 +1,17 @@
-import { SignUp } from "@clerk/nextjs";
+import { SignIn } from "@clerk/nextjs";
 import { Metadata } from "next";
 import React from "react";
 
 export const metadata: Metadata = {
-  title: "FlowBrain - Sign Up",
+  title: "ThoughtThesis - Sign In",
 };
 
-const SignUpPage = () => {
+const SignInPage = () => {
   return (
     <div className="flex h-screen items-center justify-center">
-      <SignUp appearance={{ variables: { colorPrimary: "#0f172A" } }} />
+      <SignIn appearance={{ variables: { colorPrimary: "#0f172A" } }} />
     </div>
   );
 };
 
-export default SignUpPage;
+export default SignInPage;
