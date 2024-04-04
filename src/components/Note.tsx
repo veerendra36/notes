@@ -30,7 +30,7 @@ const Note = ({ note }: NoteProps) => {
   return (
     <>
       {/* <Card
-        className="cursor-pointer transition-shadow hover:shadow-lg"
+        className="cursor-pointer transition-shadow hover:shadow-lg dark:transition-colors"
         onClick={() => setShowEditDialog(true)}
       >
         <CardHeader>
